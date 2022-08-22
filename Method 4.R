@@ -186,6 +186,9 @@ RD.cond <- function(sid, tid, e, n, data, link = "logit",
 }
 
 ## Estimating risk difference and CI for specific baseline risks (p0) and visualization
-RD_CI <- RD.cond(sid, tid, e, n, data = data,  b.iter = 1000, from = 0.1, to = 0.45,
-  ylim = c(0, 0.6), p0 = 0.3)
+library("readxl")
+data <- read_xlsx("carotid data.xlsx", sheet = "Method4", range = "A1:D17")
+## This data analysis takes about 3.5 mins
+RD_CI <- RD.cond(sid, tid, e, n, data = data,  b.iter = 1000, from = 0, to = 0.3,
+  ylim = c(-0.15, 0.15), p0 = 0.1)
 RD_CI
